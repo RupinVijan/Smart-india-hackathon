@@ -1,7 +1,7 @@
 const express = require('express')
-const bcrypt = require("bcryptjs");
 const router =express.Router()
 const userModel = require('../Backend/models/verifiedUsers')
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 const jwt_token = process.env.jwt_secret_key
