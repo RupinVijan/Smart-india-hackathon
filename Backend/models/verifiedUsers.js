@@ -17,6 +17,9 @@ const users = mongoose.Schema({
     },
 	isVerified:{
         type:Boolean
-    }
+    },
+	aadharNumber:{
+		type:String
+	}
 });
 module.exports = mongoose.model("users", users);

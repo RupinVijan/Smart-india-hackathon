@@ -28,7 +28,8 @@ app.get('/', (req, res) => {
 
 
 //api
-app.use("/api", require("./routes/loginRoutes"));
+// app.use("/api", require("./routes/loginRoutes"));
+app.use('/api', require('./routes/loginRoutes'))
 
 app.listen(port, () => {
     console.log(`Your app listening at http://localhost:${port}`)
