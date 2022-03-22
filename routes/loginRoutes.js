@@ -20,9 +20,7 @@ router.post('/signup',async(req,res)=>{
           }
           const salt = bcrypt.genSaltSync(10);
           const hashedPassword = bcrypt.hashSync(req.body.password, salt);
-          const encrypted = key.encrypt(req.body.aadharNumber, 'base64');
-          const decrypted = key.decrypt(encrypted, 'utf8');
-          console.log('decrypted: ', decrypted);
+          const encrypted = jwt.sign(req.body.aadharNumber, jwt_token)
 
           const newUser = await userModel.create({name:req.body.name,email:req.body.email,password:hashedPassword,aadharNumber:encrypted,isVerified:false})
           const userToken = jwt.sign({ id: newUser.id }, jwt_token)
@@ -52,8 +50,8 @@ router.get('/user/:id',async(req,res)=>{
             })
           }
           console.log(users.aadharNumber)
-          // const decrypted = key.decrypt(users.aadharNumber, 'utf8');
-    res.status(200).send({status:true,users})
+          const decrypted = jwt.verify(users.aadharNumber, jwt_token);
+    res.status(200).send({status:true,users,aadharNumber:decrypted})
   } catch (error) {
     res.status(500).send({status:false,error})
     console.log(error)
@@ -100,7 +98,7 @@ router.post('/login',async(req,res)=>{
           }
           if (bcrypt.compareSync(req.body.password, users.password)) {
             const userToken = jwt.sign({ id: users.id }, jwt_token)
-            res.status(200).send({
+            res.status(200).cookie("userToken",userToken).send({
               status: true,
               userToken,
             })
@@ -115,5 +113,10 @@ router.post('/login',async(req,res)=>{
     res.status(500).send({status:false,error})
   }
 })
+
+router.get('/logout',async(req,res)=>{
+    res.cookie("name","").redirect('/login')
+  })
+
 
 module.exports=router;
