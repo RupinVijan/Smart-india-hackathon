@@ -29,14 +29,29 @@ app.get('/', (req, res) => {
 })
 app.get('/login', async(req, res) => {
   if(!req.cookies.userToken || req.cookies.userToken===""){
-    res.sendFile(path.join(pathname + "/login.html"));
+    res.sendFile(path.join(pathname + "/login/index1.html"));
   }
   else{
     let userToken = req.cookies.userToken;
     const tokenVerify = jwt.verify(userToken, jwt_token);
     let users = await userModel.findById(tokenVerify.id);
         if (!users) {
-          res.sendFile(path.join(pathname + "/login.html"));
+          res.sendFile(path.join(pathname + "/login/index1.html"));
+          }
+        res.redirect('/dashboard')
+  }
+
+})
+app.get('/signin', async(req, res) => {
+  if(!req.cookies.userToken || req.cookies.userToken===""){
+    res.sendFile(path.join(pathname + "/signup/index.html"));
+  }
+  else{
+    let userToken = req.cookies.userToken;
+    const tokenVerify = jwt.verify(userToken, jwt_token);
+    let users = await userModel.findById(tokenVerify.id);
+        if (!users) {
+          res.sendFile(path.join(pathname + "/signup/index.html"));
           }
         res.redirect('/dashboard')
   }
