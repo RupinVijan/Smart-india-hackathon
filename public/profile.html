@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./profile page/style.css">
+    <title>Profile Page</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav">
+            <input type="checkbox" id="nav-check">
+            <div class="nav-header">
+                <div class="nav-title">
+                    <img src="./profile page/asset/new_logo.png" alt="">
+                </div>
+            </div>
+            <div class="nav-btn">
+                <label for="nav-check">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+            </div>
+
+            <div class="nav-links">
+                <a href="//github.io/jo_geek" target="_blank">My Aadhar</a>
+                <a href="http://stackoverflow.com/users/4084003/" target="_blank">About Xspark</a>
+                <a href="https://in.linkedin.com/in/jonesvinothjoseph" target="_blank">Dashboard</a>
+                <a href="https://codepen.io/jo_Geek/" target="_blank">Contact and Support</a>
+
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="cont1">
+            <img src="./profile page/asset/img_avatar.png" alt="" class="img1">
+            <h2 class="nam">Sidharth Dang</h2>
+            <button class="but">
+                Logout
+            </button>
+        </div>
+    </section>
+    <section>
+        <div class="cont2">
+            <h2 class="about">ABOUT</h2>
+            <h2 class="name">Full Name : Sidharth Dang</h2>
+            <h2 class="email">Email : example@gmail.com</h2>
+            <h2 class="aadh">Aadhar Card Number : xxxxxxxxxxxx</h2>
+        </div>
+    </section>
+    <footer>
+
+        <div class="footer-bottom">
+            <!-- add all information -->
+            <p>copyright &copy;2021 <a href="#">Xspark</a> </p>
+            <div class="footer-menu">
+                <ul class="f-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/#cont">Contact</a></li>
+                    <li><a href="/api/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </footer>
+    <script>
+        async function ne () {
+            let len = document.cookie.split("=").length - 1;
+            console.log(len)
+            const res = await fetch('/api/user/' + document.cookie.split("=")[2]);
+            const data = await res.json();
+            document.querySelector('.name').innerText="Full Name : " + data.users.name;
+            document.querySelector('.nam').innerText= data.users.name;
+            document.querySelector('.email').innerText="Email : " + data.users.email;
+            document.querySelector('.aadh').innerText="Aadhar Number : " + data.users.aadharNumber;
+            console.log(data)
+        }
+        ne()
+    </script>
+</body>
+
+</html>

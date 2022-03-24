@@ -55,8 +55,8 @@ router.get('/user/:id', async (req, res) => {
       })
     }
     console.log(users.aadharNumber)
-    const decrypted = jwt.verify(users.aadharNumber, jwt_token);
-    res.status(200).send({ status: true, users, aadharNumber: decrypted })
+    // const decrypted = jwt.verify(users.aadharNumber, jwt_token);
+    res.status(200).send({ status: true, users})
   } catch (error) {
     res.status(500).send({ status: false, error })
     console.log(error)
@@ -119,7 +119,7 @@ router.post('/login', async (req, res) => {
 })
 
 router.get('/logout', async (req, res) => {
-  res.cookie("name", "").redirect('/login')
+  res.cookie("userToken", "").redirect('/login')
 })
 
 router.post('/forgot', async (req, res) => {

@@ -59,16 +59,31 @@ app.get('/signin', async(req, res) => {
 })
 app.get('/dashboard', async(req, res) => {
   if(!req.cookies.userToken || req.cookies.userToken===""){
-    res.sendFile(path.join(pathname + "/login.html"));
+    res.sendFile(path.join(pathname + "/login/index1.html"));
   }
   else{
     let userToken = req.cookies.userToken;
     const tokenVerify = jwt.verify(userToken, jwt_token);
     let users = await userModel.findById(tokenVerify.id);
         if (!users) {
-          res.sendFile(path.join(pathname + "/login.html"));
+          res.sendFile(path.join(pathname + "/login/index1.html"));
           }
           res.sendFile(path.join(pathname + "/dashboard.html"));
+  }
+
+})
+app.get('/profile', async(req, res) => {
+  if(!req.cookies.userToken || req.cookies.userToken===""){
+    res.sendFile(path.join(pathname + "/login/index1.html"));
+  }
+  else{
+    let userToken = req.cookies.userToken;
+    const tokenVerify = jwt.verify(userToken, jwt_token);
+    let users = await userModel.findById(tokenVerify.id);
+        if (!users) {
+          res.sendFile(path.join(pathname + "/login/index1.html"));
+          }
+          res.cookie("id", tokenVerify.id).sendFile(path.join(pathname + "/profile.html"));
   }
 
 })
