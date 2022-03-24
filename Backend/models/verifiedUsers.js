@@ -11,15 +11,19 @@ const users = mongoose.Schema({
 	password: {
 		type: String
 	},
-    userLogin:{
-        type:String,
-        default:'isUser'
-    },
-	isVerified:{
-        type:Boolean
-    },
-	aadharNumber:{
-		type:String
+	userLogin: {
+		type: String,
+		default: 'isUser'
+	},
+	isVerified: {
+		type: Boolean
+	},
+	aadharNumber: {
+		type: String
+	},
+	role: {
+		type: String,
+		default: 'user'
 	}
 });
 module.exports = mongoose.model("users", users);
