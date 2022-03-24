@@ -22,15 +22,15 @@
     </nav>
     <section>
         <div>
-            <form>
+            <form action="/api/signup" method="POST">
                 <h2 class="p1">Please enter your Name</h2>
-                <input type="text" placeholder="Sidharth D" class="input" required>
+                <input type="text" placeholder="Sidharth D" class="input" name="name" required>
                 <h2 class="p2">Please enter your Email</h2> 
-                <input type="email" placeholder="example@gmail.com" class="input2" required>
+                <input type="email" placeholder="example@gmail.com" class="input2" name="email" required>
                 <h2 class="p3">Please enter your Aadhar Card Number</h2>
-                <input type="text" placeholder="XXXXXXXXXXXX" class="input3" required>
+                <input type="text" placeholder="XXXXXXXXXXXX" class="input3" name="aadharNumber" required>
                 <h2 class="p4">Please enter your password</h2>
-                <input type="password" placeholder="*********" class="input4" required>
+                <input type="password" placeholder="*********" class="input4" name="password" required>
                 <button>
                     <span>Sign Up</span>
                     <div class="liquid"></div>
