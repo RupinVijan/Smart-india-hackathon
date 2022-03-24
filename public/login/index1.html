@@ -22,11 +22,11 @@
     </nav>
     <section>
         <div>
-            <form>
+            <form action="/api/login" method="POST">
                 <h2 class="p1">Please enter your Email</h2>
-                <input type="email" placeholder="example@gmail.com" class="input" required>
+                <input type="email" placeholder="example@gmail.com" class="input" name="email" required>
                 <h2 class="p2">Please enter your password</h2>
-                <input type="password" placeholder="*********" class="input2" required>
+                <input type="password" placeholder="*********" class="input2" name="password" required>
                 <button>
                     <span>Login</span>
                     <div class="liquid"></div>

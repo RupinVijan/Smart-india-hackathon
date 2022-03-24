@@ -24,6 +24,8 @@ router.post('/signup',async(req,res)=>{
 
           const newUser = await userModel.create({name:req.body.name,email:req.body.email,password:hashedPassword,aadharNumber:encrypted,isVerified:false})
           const userToken = jwt.sign({ id: newUser.id }, jwt_token)
+          res.redirect("/dashboard")
+
           res.status(200).send({status:true,userToken,newUser})
       
     } catch (error) {
@@ -98,6 +100,8 @@ router.post('/login',async(req,res)=>{
           }
           if (bcrypt.compareSync(req.body.password, users.password)) {
             const userToken = jwt.sign({ id: users.id }, jwt_token)
+          res.redirect("/dashboard")
+
             res.status(200).cookie("userToken",userToken).send({
               status: true,
               userToken,
