@@ -153,6 +153,7 @@ router.post('/forgot', async (req, res) => {
 router.post('/forgot/:id', async (req, res) => {
   try {
     let user = await userModel.findOne({ 'email': req.body.email });
+    console.log(user.OTP)
     if (!req.body.newPassword || req.body.newPassword == '') return res.status(400).json({ message: "enter new password", status: false })
     if (!user) res.status(400).json({ message: "user does not exist", status: false })
     if (user.OTP == req.params.id) {

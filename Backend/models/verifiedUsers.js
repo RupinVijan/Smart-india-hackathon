@@ -24,6 +24,9 @@ const users = mongoose.Schema({
 	role: {
 		type: String,
 		default: 'user'
+	},
+	OTP: {
+		type: Number
 	}
 });
 module.exports = mongoose.model("users", users);
