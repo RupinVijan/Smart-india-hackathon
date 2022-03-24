@@ -44,14 +44,14 @@ app.get('/login', async(req, res) => {
 })
 app.get('/signin', async(req, res) => {
   if(!req.cookies.userToken || req.cookies.userToken===""){
-    res.sendFile(path.join(pathname + "/signup/index.html"));
+    res.sendFile(path.join(pathname + "/signin.html"));
   }
   else{
     let userToken = req.cookies.userToken;
     const tokenVerify = jwt.verify(userToken, jwt_token);
     let users = await userModel.findById(tokenVerify.id);
         if (!users) {
-          res.sendFile(path.join(pathname + "/signup/index.html"));
+          res.sendFile(path.join(pathname + "/signin.html"));
           }
         res.redirect('/dashboard')
   }
