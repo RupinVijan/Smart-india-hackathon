@@ -104,12 +104,7 @@ router.post('/login', async (req, res) => {
           }
           if (bcrypt.compareSync(req.body.password, users.password)) {
             const userToken = jwt.sign({ id: users.id }, jwt_token)
-          res.redirect("/dashboard")
-
-            res.status(200).cookie("userToken",userToken).send({
-              status: true,
-              userToken,
-            })
+          res.cookie("userToken",userToken).redirect("/dashboard")
           }
           else {
             res.status(404).send({
