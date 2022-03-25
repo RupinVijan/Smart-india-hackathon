@@ -28,7 +28,6 @@ router.post('/signup',async(req,res)=>{
           const userToken = jwt.sign({ id: newUser.id }, jwt_token)
           res.redirect("/dashboard")
 
-          res.status(200).send({status:true,userToken,newUser})
       
     } catch (error) {
         res.status(500).send({status:false,error})
